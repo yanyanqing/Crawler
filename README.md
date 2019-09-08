@@ -9,7 +9,7 @@
 - Engine:负责各个模块间的数据流交互，生成 Request 传递给 Scheduler 模块.
 - Scheduler: Url 的去重，过滤，分发带爬取 Request 到 Spider 模块中.
 - Spider: 进行网页的爬取和解析，解析后的 Item 传递给 ItemPipeline 处理， Request 传递给 Engine 模块.
-- Item Pipeline: 对解析结果进行过滤，持久化处理
+- Item Pipeline: 对解析结果进行过滤，持久化处理.
 + 详细介绍参考 [Python Scrapy框架](https://segmentfault.com/a/1190000012041391)
 
 ## 分布式
@@ -18,6 +18,6 @@
 * Master 和 Slave 进程通过 Redis 消息队列进行通信(对应 Redis 的 List 数据结构).
 * Master 进程通过 Redis lpush 产生待爬取 Request.
 * Slave 进程通过 Redis brpop 获取 Request 进行网页爬取和解析.
-或者用 rpush/blpop 这个组合也可以，这样就实现了简单的分布式了.
++ 或者用 rpush/blpop 这个组合也可以，这样就实现了简单的分布式了.
 
 本项目长期维护，求喷，求喷！！！
